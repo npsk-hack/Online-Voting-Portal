@@ -1,0 +1,7 @@
+# Ignore node modules
+/voting-backend/node_modules/
+
+# Ignore IDE configurations
+/.idea
+/voting-backend/.idea
+
