@@ -13,7 +13,7 @@ import {MongooseModule} from "@nestjs/mongoose";
       VotersModule,
       CandidatesModule,
       CampaignModule,
-      MongooseModule.forRoot('mongodb://localhost/voting-portal')
+      MongooseModule.forRoot('mongodb://localhost/voting-portal', { useFindAndModify: false })
   ],
   controllers: [AppController],
   providers: [AppService],
