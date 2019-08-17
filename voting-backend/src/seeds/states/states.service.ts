@@ -22,6 +22,22 @@ export class StatesService {
         return this.stateModel.findOne({ _id: id }).populate('districts').exec();
     }
 
+    pushNewDistrict(stateName: string, id: string): Promise<StatesInterface> {
+        return this.stateModel.findOneAndUpdate({ name: stateName }, {
+            $push: {
+                "districts": id
+            }
+        }, { new: true }).exec();
+    }
+
+    pullDistrict(id: string): Promise<StatesInterface> {
+        return this.stateModel.findOneAndUpdate({}, {
+            $pull: {
+                "districts": id
+            }
+        }, {new: true}).exec();
+    }
+
     updateName(id: string, state: StatesDto): Promise<StatesInterface> {
         return this.stateModel.findOneAndUpdate({ _id: id }, state, { new: true }).populate('districts').exec();
     }

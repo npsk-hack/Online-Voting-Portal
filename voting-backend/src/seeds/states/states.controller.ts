@@ -7,12 +7,12 @@ import {StatesInterface} from "./states.interface";
 export class StatesController {
     constructor(private readonly statesService: StatesService) {}
 
-    @Get('')
+    @Get()
     getAll(): Promise<StatesInterface[]> {
         return this.statesService.getAll();
     }
 
-    @Post('')
+    @Post()
     create(@Body() state: StatesDto): Promise<StatesInterface> {
         return this.statesService.create(state);
     }

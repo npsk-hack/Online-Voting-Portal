@@ -3,7 +3,13 @@ import * as mongoose from 'mongoose';
 export const StateSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
-    districts: [mongoose.Schema.Types.ObjectId]
+    districts: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'districts'
+        }
+    ]
 });
