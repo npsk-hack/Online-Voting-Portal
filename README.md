@@ -4,4 +4,5 @@ Why wait in a long queue when you can vote online from anywhere? Why wait for re
 
 
 Prototype Link: https://xd.adobe.com/view/a8e7d6e4-ee95-49cc-58f4-660bf1cc240b-ded6/?fullscreen
+
 Design Specs Link: https://xd.adobe.com/spec/f62604cc-f4a4-412d-41de-3f3315b5aaf9-8017/
