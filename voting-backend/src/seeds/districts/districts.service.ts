@@ -3,11 +3,12 @@ import {InjectModel} from "@nestjs/mongoose";
 import {Model} from "mongoose";
 import {DistrictsInterface} from "./districts.interface";
 import {DistrictsDto} from "./districts.dto";
+import {ConstituenciesService} from "../constituencies/constituencies.service";
 
 @Injectable()
 export class DistrictsService {
 
-    constructor(@InjectModel('districts') private readonly districtModel: Model<DistrictsInterface>) {}
+    constructor(@InjectModel('districts') private readonly districtModel: Model<DistrictsInterface>, private constituencyService: ConstituenciesService) {}
 
     getAll(): Promise<DistrictsInterface[]> {
         return this.districtModel.find().select('_id name').exec();
@@ -29,6 +30,10 @@ export class DistrictsService {
     }
 
     async deleteDistrict(id: string) {
+        const district = await this.findOne(id);
+        district.constituencies.forEach( async constituency => {
+            await this.constituencyService.deleteConstituency(constituency);
+        });
         return this.districtModel.deleteOne({ _id: id }).exec();
     }
 

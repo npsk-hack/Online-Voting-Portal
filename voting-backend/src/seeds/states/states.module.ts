@@ -4,6 +4,9 @@ import { StatesService } from './states.service';
 import {MongooseModule} from "@nestjs/mongoose";
 import {StateSchema} from "./states.schema";
 import {DistrictSchema} from "../districts/districts.schema";
+import {DistrictsService} from "../districts/districts.service";
+import {ConstituenciesService} from "../constituencies/constituencies.service";
+import {ConstituencySchema} from "../constituencies/constituencies.schema";
 
 @Module({
   imports: [
@@ -14,11 +17,14 @@ import {DistrictSchema} from "../districts/districts.schema";
         }, {
           name: 'districts',
           schema: DistrictSchema
+        }, {
+          name: 'constituencies',
+          schema: ConstituencySchema
         }
       ])
   ],
   controllers: [StatesController],
-  providers: [StatesService],
+  providers: [StatesService, DistrictsService, ConstituenciesService],
   exports: [
       MongooseModule.forFeature([
         {

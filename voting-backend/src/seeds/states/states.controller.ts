@@ -2,10 +2,12 @@ import {Body, Controller, Delete, Get, Param, Post, Put} from '@nestjs/common';
 import {StatesService} from "./states.service";
 import {StatesDto} from "./states.dto";
 import {StatesInterface} from "./states.interface";
+import {DistrictsService} from "../districts/districts.service";
 
 @Controller('api/v1/seeds/states')
 export class StatesController {
-    constructor(private readonly statesService: StatesService) {}
+    constructor(private readonly statesService: StatesService,
+    private readonly districtService: DistrictsService) {}
 
     @Get()
     getAll(): Promise<StatesInterface[]> {
@@ -28,7 +30,11 @@ export class StatesController {
     }
 
     @Delete(':id')
-    deleteState(@Param('id') id: string) {
+    async deleteState(@Param('id') id: string) {
+        const state = await this.statesService.findOne(id);
+        state.districts.forEach( async district => {
+            await this.districtService.deleteDistrict(district)
+        });
         return this.statesService.deleteState(id);
     }
 }
