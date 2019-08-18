@@ -31,4 +31,22 @@ export class DistrictsService {
     async deleteDistrict(id: string) {
         return this.districtModel.deleteOne({ _id: id }).exec();
     }
+
+    async pushNewConstituency(districtName: string, id: string): Promise<DistrictsInterface> {
+        return this.districtModel.findOneAndUpdate({ name: districtName }, {
+            $push: {
+                "constituencies": id
+            }
+        }, { new: true }).exec();
+    }
+
+    async pullConstituency(id: string): Promise<DistrictsInterface> {
+        return this.districtModel.findOneAndUpdate({
+            "constituencies": id
+        }, {
+            $pull: {
+                "constituencies": id
+            }
+        }, { new: true }).exec();
+    }
 }

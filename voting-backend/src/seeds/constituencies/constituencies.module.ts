@@ -3,6 +3,8 @@ import { ConstituenciesController } from './constituencies.controller';
 import { ConstituenciesService } from './constituencies.service';
 import {MongooseModule} from "@nestjs/mongoose";
 import {ConstituencySchema} from "./constituencies.schema";
+import {DistrictsService} from "../districts/districts.service";
+import {DistrictSchema} from "../districts/districts.schema";
 
 @Module({
   imports: [
@@ -10,11 +12,14 @@ import {ConstituencySchema} from "./constituencies.schema";
       {
         name: 'constituencies',
         schema: ConstituencySchema
+      }, {
+        name: 'districts',
+        schema: DistrictSchema
       }
     ])
   ],
   controllers: [ConstituenciesController],
-  providers: [ConstituenciesService],
+  providers: [ConstituenciesService, DistrictsService],
   exports: [
     MongooseModule.forFeature([
       {

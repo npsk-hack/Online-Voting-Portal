@@ -31,7 +31,9 @@ export class StatesService {
     }
 
     pullDistrict(id: string): Promise<StatesInterface> {
-        return this.stateModel.findOneAndUpdate({}, {
+        return this.stateModel.findOneAndUpdate({
+                "districts": id
+        }, {
             $pull: {
                 "districts": id
             }

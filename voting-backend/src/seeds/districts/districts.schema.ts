@@ -5,5 +5,10 @@ export const DistrictSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    constituencies: [mongoose.Schema.Types.ObjectId]
+    constituencies: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'constituencies'
+        }
+    ]
 });

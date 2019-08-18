@@ -32,6 +32,10 @@ export class DistrictsController {
 
     @Put(':id')
     async updateDistrict(@Param('id') id: string, @Body() districtDTO: DistrictsDto): Promise<DistrictsInterface> {
+        if(districtDTO.stateName) {
+            await this.stateService.pullDistrict(id);
+            await this.stateService.pushNewDistrict(districtDTO.stateName, id);
+        }
         return this.districtService.updateDistrict(id, districtDTO);
     }
 
