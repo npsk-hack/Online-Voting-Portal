@@ -7,6 +7,7 @@ import { CandidatesModule } from './candidates/candidates.module';
 import { CampaignModule } from './campaign/campaign.module';
 import {MongooseModule} from "@nestjs/mongoose";
 import { FileUploadModule } from './file-upload/file-upload.module';
+import { PartiesModule } from './parties/parties.module';
 
 @Module({
   imports: [
@@ -15,7 +16,8 @@ import { FileUploadModule } from './file-upload/file-upload.module';
       CandidatesModule,
       CampaignModule,
       MongooseModule.forRoot('mongodb://localhost/voting-portal', { useFindAndModify: false }),
-      FileUploadModule
+      FileUploadModule,
+      PartiesModule
   ],
   controllers: [AppController],
   providers: [AppService],
