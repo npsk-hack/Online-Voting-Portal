@@ -35,7 +35,7 @@ export class VotersService {
     }
 
     findOne(vid: string): Promise<VotersInterface> {
-        return this.voterModel.findOne({ VID: vid }).populate('state district constituency').exec();
+        return this.voterModel.findOne({ VID: vid }).exec();
     }
 
     findOneAndUpdate(id: string, update): Promise<VotersInterface> {
@@ -44,5 +44,9 @@ export class VotersService {
 
     deleteOne(id: string) {
         return this.voterModel.deleteOne({ _id: id });
+    }
+
+    markVoted(id: string): Promise<VotersInterface> {
+        return this.voterModel.findOneAndUpdate({ _id: id}, { hasCastedVote: true }).exec();
     }
 }

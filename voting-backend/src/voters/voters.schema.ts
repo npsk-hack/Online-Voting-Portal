@@ -62,5 +62,10 @@ export const VotersSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true
+    },
+    hasCastedVote: {
+        type: Boolean,
+        default: false,
+        required: true
     }
 });

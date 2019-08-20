@@ -9,7 +9,7 @@ export class CandidatesService {
     constructor(@InjectModel('candidates') private readonly candidateModel: Model<CandidatesInterface>) {}
 
     getAll(): Promise<CandidatesInterface[]> {
-        return this.candidateModel.find().exec()
+        return this.candidateModel.find().exec();
     }
 
     create(candidateDTO: CandidatesDto): Promise<CandidatesInterface> {
@@ -33,5 +33,16 @@ export class CandidatesService {
 
     deleteOne(id: string) {
         return this.candidateModel.deleteOne({ _id: id });
+    }
+
+    getCandidatesByConstituency(constituencyID: string): Promise<CandidatesInterface[]> {
+        return this.candidateModel.find({ constituency: constituencyID }).populate('party').exec();
+    }
+
+    incrementVoteCount(candidateID: string): Promise<CandidatesInterface> {
+        return this.candidateModel.findOneAndUpdate({ _id: candidateID}, { $inc: {
+            votes: 1,
+            },
+        }).exec();
     }
 }

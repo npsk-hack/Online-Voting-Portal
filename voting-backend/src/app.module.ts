@@ -9,6 +9,7 @@ import {MongooseModule} from '@nestjs/mongoose';
 import { FileUploadModule } from './file-upload/file-upload.module';
 import { PartiesModule } from './parties/parties.module';
 import { VerifyModule } from './verify/verify.module';
+import { PollsModule } from './polls/polls.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { VerifyModule } from './verify/verify.module';
       FileUploadModule,
       PartiesModule,
       VerifyModule,
+      PollsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -16,4 +16,5 @@ export interface VotersInterface extends Document {
     readonly age_proof?: string;
     readonly address_proof?: string;
     readonly VID: string;
+    readonly hasCastedVote: boolean;
 }
