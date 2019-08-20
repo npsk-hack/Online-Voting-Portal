@@ -5,9 +5,10 @@ import { SeedsModule } from './seeds/seeds.module';
 import { VotersModule } from './voters/voters.module';
 import { CandidatesModule } from './candidates/candidates.module';
 import { CampaignModule } from './campaign/campaign.module';
-import {MongooseModule} from "@nestjs/mongoose";
+import {MongooseModule} from '@nestjs/mongoose';
 import { FileUploadModule } from './file-upload/file-upload.module';
 import { PartiesModule } from './parties/parties.module';
+import { VerifyModule } from './verify/verify.module';
 
 @Module({
   imports: [
@@ -17,7 +18,8 @@ import { PartiesModule } from './parties/parties.module';
       CampaignModule,
       MongooseModule.forRoot('mongodb://localhost/voting-portal', { useFindAndModify: false }),
       FileUploadModule,
-      PartiesModule
+      PartiesModule,
+      VerifyModule,
   ],
   controllers: [AppController],
   providers: [AppService],

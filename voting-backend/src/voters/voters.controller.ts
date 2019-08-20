@@ -1,7 +1,7 @@
 import {Body, Controller, Delete, Get, Param, Post, Put} from '@nestjs/common';
-import {VotersService} from "./voters.service";
-import {VotersInterface} from "./voters.interface";
-import {VotersDto} from "./voters.dto";
+import {VotersService} from './voters.service';
+import {VotersInterface} from './voters.interface';
+import {VotersDto} from './voters.dto';
 
 @Controller('api/v1/voters')
 export class VotersController {
